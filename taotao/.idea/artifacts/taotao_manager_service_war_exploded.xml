@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="taotao-manager-service:war exploded">
+    <output-path>$PROJECT_DIR$/../taotao-manager/taotao-manager-service/target/taotao-manager-service-1.0-SNAPSHOT</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>taotao-manager-service</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="taotao-manager-service" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../taotao-manager/taotao-manager-service/target/taotao-manager-service-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="taotao-manager-service/web/Web" />
+    </root>
+  </artifact>
+</component>
