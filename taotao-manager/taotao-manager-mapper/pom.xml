@@ -15,4 +15,12 @@
     <artifactId>taotao-manager-mapper</artifactId>
 
 
+    <dependencies>
+        <!--   因为mapper需要使用到javabean,所以此处需要依赖taotao-manager-pojo     -->
+        <dependency>
+            <groupId>cn.edu.sziit</groupId>
+            <artifactId>taotao-manager-pojo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
