@@ -20,9 +20,10 @@ public class ItemCatController {
             @RequestParam(value = "id", defaultValue = "0") Long parentId) {
 
         List<ItemCat> itemCats = itemCatService.queryItemCatByParentId(parentId);
-//        System.out.println(itemCats);
-        return itemCats;
 
+        System.out.println(itemCats);
+
+        return itemCats;
     }
 
 }
