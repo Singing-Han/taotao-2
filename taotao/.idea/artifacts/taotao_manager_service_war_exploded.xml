@@ -14,6 +14,9 @@
           <element id="module-output" name="taotao-manager-service" />
         </element>
         <element id="directory" name="lib">
+          <element id="archive" name="taotao-manager-service-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="taotao-manager-service" />
+          </element>
           <element id="archive" name="taotao-manager-interface-1.0-SNAPSHOT.jar">
             <element id="module-output" name="taotao-manager-interface" />
           </element>

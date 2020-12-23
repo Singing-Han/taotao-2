@@ -14,6 +14,15 @@
           <element id="module-output" name="taotao-manager-web" />
         </element>
         <element id="directory" name="lib">
+          <element id="archive" name="taotao-manager-interface-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="taotao-manager-interface" />
+          </element>
+          <element id="archive" name="taotao-manager-pojo-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="taotao-manager-pojo" />
+          </element>
+          <element id="archive" name="taotao-common-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="taotao-common" />
+          </element>
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter-web:2.3.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot-starter:2.3.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.boot:spring-boot:2.3.4.RELEASE" />
