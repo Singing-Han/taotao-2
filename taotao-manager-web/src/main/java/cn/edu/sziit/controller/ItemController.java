@@ -21,4 +21,13 @@ public class ItemController {
         return itemTaoResult;
     }
 
+    @RequestMapping("/rest/addItem")
+    public void addItem(Item item,String desc){
+
+        itemService.saveItem(item,desc);
+
+        System.out.println("新增商品成功:" + item);
+        System.out.println(desc);
+    }
+
 }

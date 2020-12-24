@@ -3,7 +3,6 @@ package cn.edu.sziit.service;
 import cn.edu.sziit.pojo.Item;
 import cn.edu.sziit.pojo.TaoResult;
 
-import java.util.List;
 
 public interface ItemService {
 
@@ -18,4 +17,10 @@ public interface ItemService {
     TaoResult<Item> findByPage(Integer page, Integer rows);
 
 
+    /**
+     *
+     * @param item 商品对象
+     * @param desc 商品描述
+     */
+    void saveItem(Item item,String desc);
 }
