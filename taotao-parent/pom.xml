@@ -15,6 +15,7 @@
         <module>../itcast-dubbo-interface</module>
         <module>../itcast-dubbo-provider</module>
         <module>../itcast-dubbo-consumer</module>
+        <module>../taotao-portal</module>
     </modules>
 
     <parent>
