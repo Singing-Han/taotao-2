@@ -9,10 +9,7 @@ public class PageController {
 
     @RequestMapping("/{path}")
     public String page(@PathVariable(name="path")String path){
-//        System.out.println("=======" + path);
+
         return path;
     }
-
-
-
 }

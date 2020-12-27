@@ -16,6 +16,7 @@
         <module>../itcast-dubbo-provider</module>
         <module>../itcast-dubbo-consumer</module>
         <module>../taotao-portal</module>
+        <module>../itcast-solrj</module>
     </modules>
 
     <parent>

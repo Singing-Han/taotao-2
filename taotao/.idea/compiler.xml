@@ -12,6 +12,7 @@
         <module name="itcast-dubbo-consumer" />
         <module name="itcast-dubbo-provider" />
         <module name="taotao-manager-service" />
+        <module name="itcast-solrj" />
         <module name="taotao-manager-web" />
         <module name="taotao-common" />
         <module name="taotao-manager-pojo" />
@@ -22,6 +23,7 @@
       <module name="itcast-dubbo-consumer" target="1.8" />
       <module name="itcast-dubbo-interface" target="1.8" />
       <module name="itcast-dubbo-provider" target="1.8" />
+      <module name="itcast-solrj" target="1.8" />
       <module name="taotao-common" target="1.8" />
       <module name="taotao-manager" target="1.8" />
       <module name="taotao-manager-interface" target="1.8" />
@@ -38,6 +40,7 @@
       <module name="itcast-dubbo-consumer" options="-parameters" />
       <module name="itcast-dubbo-interface" options="-parameters" />
       <module name="itcast-dubbo-provider" options="-parameters" />
+      <module name="itcast-solrj" options="-parameters" />
       <module name="taotao-common" options="-parameters" />
       <module name="taotao-manager-interface" options="-parameters" />
       <module name="taotao-manager-mapper" options="-parameters" />
