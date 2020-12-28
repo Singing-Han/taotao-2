@@ -21,10 +21,9 @@ public class SearchController {
 
 
     // http://search.taotao.com/search?q=apple
-    @RequestMapping("/search")
+    @RequestMapping("/search.html")
     public String search(Model model, @RequestParam("q") String query,
                          @RequestParam(value = "page", defaultValue = "1") Integer page){
-
 
         //直接调用service得到搜索的结果
         TaoResult<Item> taoResult = searchService.search(query, page, rows);

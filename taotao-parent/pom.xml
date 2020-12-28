@@ -19,6 +19,7 @@
         <module>../itcast-solrj</module>
         <module>../taotao-search</module>
         <module>../taotao-search-web</module>
+        <module>../itcast-activemq</module>
     </modules>
 
     <parent>

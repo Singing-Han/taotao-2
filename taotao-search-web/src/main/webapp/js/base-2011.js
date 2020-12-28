@@ -2,10 +2,10 @@
  Date: 2014-01-21 
  */
 function login() {
-    return location.href = "http://www.taotao.com/page/login.html";
+    return location.href = "http://www.taotao.com/page/login";
 }
 function regist() {
-    return location.href = "http://www.taotao.com/page/register.html";
+    return location.href = "http://www.taotao.com/page/register";
 }
 function createCookie(a, b, c, d) {
     var d = d ? d : "/";

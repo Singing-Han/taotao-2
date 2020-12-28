@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../itcast-activemq/itcast-activemq.iml" filepath="$PROJECT_DIR$/../itcast-activemq/itcast-activemq.iml" />
       <module fileurl="file://$PROJECT_DIR$/../itcast-dubbo-consumer/itcast-dubbo-consumer.iml" filepath="$PROJECT_DIR$/../itcast-dubbo-consumer/itcast-dubbo-consumer.iml" />
       <module fileurl="file://$PROJECT_DIR$/../itcast-dubbo-interface/itcast-dubbo-interface.iml" filepath="$PROJECT_DIR$/../itcast-dubbo-interface/itcast-dubbo-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/../itcast-dubbo-provider/itcast-dubbo-provider.iml" filepath="$PROJECT_DIR$/../itcast-dubbo-provider/itcast-dubbo-provider.iml" />

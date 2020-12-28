@@ -18,11 +18,13 @@
         <module name="itcast-dubbo-interface" />
         <module name="itcast-solrj" />
         <module name="taotao-manager-web" />
+        <module name="itcast-activemq" />
         <module name="taotao-common" />
         <module name="taotao-manager-mapper" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="itcast-activemq" target="1.8" />
       <module name="itcast-dubbo-consumer" target="1.8" />
       <module name="itcast-dubbo-interface" target="1.8" />
       <module name="itcast-dubbo-provider" target="1.8" />
@@ -44,6 +46,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="itcast-activemq" options="-parameters" />
       <module name="itcast-dubbo-consumer" options="-parameters" />
       <module name="itcast-dubbo-interface" options="-parameters" />
       <module name="itcast-dubbo-provider" options="-parameters" />
