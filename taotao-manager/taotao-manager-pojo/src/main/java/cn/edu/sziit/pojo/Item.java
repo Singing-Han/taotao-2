@@ -29,13 +29,24 @@ public class Item extends BasePojo {
     private String barcode;
 
     @Column
-    private String image;
+    private String image; //商品的图片，但是商品的图片也许有很多张，它们的数据这样的。 第一张图片的地址,第二张图片的地址,第三张图片的地址
 
     @Column
     private Long cid;
 
     @Column
     private Integer status;
+
+
+    // 添加get方法，支持前端页面的展示
+    public String[] getImages() {
+        if (!this.getImage().isEmpty()) {
+            String[] images = this.getImage().split(",");
+            return images;
+        }
+        // 如果没有图片，直接返回空
+        return null;
+    }
 
     public Long getId() {
         return id;
@@ -117,3 +128,5 @@ public class Item extends BasePojo {
     }
 
 }
+
+

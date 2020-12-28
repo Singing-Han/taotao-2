@@ -6,16 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="itcast-dubbo-interface" />
         <module name="taotao-portal" />
         <module name="taotao-manager-interface" />
         <module name="itcast-dubbo-consumer" />
         <module name="itcast-dubbo-provider" />
         <module name="taotao-manager-service" />
+        <module name="taotao-search-web" />
+        <module name="taotao-search-service" />
+        <module name="taotao-search-interface" />
+        <module name="taotao-manager-pojo" />
+        <module name="itcast-dubbo-interface" />
         <module name="itcast-solrj" />
         <module name="taotao-manager-web" />
         <module name="taotao-common" />
-        <module name="taotao-manager-pojo" />
         <module name="taotao-manager-mapper" />
       </profile>
     </annotationProcessing>
@@ -33,6 +36,10 @@
       <module name="taotao-manager-web" target="1.8" />
       <module name="taotao-parent" target="1.8" />
       <module name="taotao-portal" target="1.8" />
+      <module name="taotao-search" target="1.8" />
+      <module name="taotao-search-interface" target="1.8" />
+      <module name="taotao-search-service" target="1.8" />
+      <module name="taotao-search-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -48,6 +55,10 @@
       <module name="taotao-manager-service" options="-parameters" />
       <module name="taotao-manager-web" options="-parameters" />
       <module name="taotao-portal" options="-parameters" />
+      <module name="taotao-search" options="-parameters" />
+      <module name="taotao-search-interface" options="-parameters" />
+      <module name="taotao-search-service" options="-parameters" />
+      <module name="taotao-search-web" options="-parameters" />
     </option>
   </component>
 </project>

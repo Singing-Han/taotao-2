@@ -17,6 +17,8 @@
         <module>../itcast-dubbo-consumer</module>
         <module>../taotao-portal</module>
         <module>../itcast-solrj</module>
+        <module>../taotao-search</module>
+        <module>../taotao-search-web</module>
     </modules>
 
     <parent>
