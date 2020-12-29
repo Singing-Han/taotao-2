@@ -76,7 +76,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /**
-     * 删除商品
+     * 下架商品
      * @param idArr
      */
     @Override

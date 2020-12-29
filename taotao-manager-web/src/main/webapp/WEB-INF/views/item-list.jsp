@@ -11,7 +11,7 @@
 <title>商品列表</title>
 </head>
 <body>
-<table class="easyui-datagrid" id="itemList" title="商品列表" 
+<table class="easyui-datagrid" id="itemList" title="商品列表"
        data-options="singleSelect:false,collapsible:true,pagination:true,url:'/rest/item',method:'get',pageSize:30,toolbar:toolbar">
     <thead>
         <tr>
@@ -45,7 +45,7 @@
 
     	return ids;
     }
-    
+
     var toolbar = [{
         text:'编辑',
         iconCls:'icon-edit',
@@ -59,19 +59,19 @@
         		$.messager.alert('提示','只能选择一个商品!');
         		return ;
         	}
-        	
+
         	$("#itemEditWindow").window({
         		onLoad :function(){
         			//回显数据
         			var data = $("#itemList").datagrid("getSelections")[0];
         			data.priceView = TAOTAO.formatPrice(data.price);
         			$("#itemeEditForm").form("load",data);
-        			
+
         			// 加载商品描述
         			$.getJSON('/rest/item/desc/'+data.id,function(_data){
         				itemEditEditor.html(_data.itemDesc);
         			});
-        			        			
+
         			TAOTAO.init({
         				"pics" : data.image,
         				"cid" : data.cid
@@ -113,13 +113,29 @@
         	$.messager.confirm('确认','确定下架ID为 '+ids+' 的商品吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
-                	$.post("/rest/item/instock",params, function(data){
-            			if(data.status == 200){
-            				$.messager.alert('提示','下架商品成功!',undefined,function(){
-            					$("#itemList").datagrid("reload");
-            				});
-            			}
-            		});
+        	    	$.ajax({
+                        type: 'POST',
+                        url:"/rest/item/instock",
+                        data:params,
+                        success:function(msg){
+                            alert('提示: 下架商品成功!')
+                            $("#itemList").datagrid("reload");
+                        },
+                        error(data){
+                            console.log('下架商品失败!')
+                            console.log(data.status)
+                        }
+                    })
+                	// $.post({
+                    //     url:"/rest/item/instock",params, function(data){
+                    //         if(data.status == 200){
+                    //             $.messager.alert('提示','下架商品成功!',undefined,function(){
+                    //                 $("#itemList").datagrid("reload");
+                    //             });
+                    //             $("#itemList").datagrid("reload");
+                    //         }
+                    //     }
+                    // });
         	    }
         	});
         }
@@ -135,13 +151,28 @@
         	$.messager.confirm('确认','确定上架ID为 '+ids+' 的商品吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
-                	$.post("/rest/item/reshelf",params, function(data){
-            			if(data.status == 200){
-            				$.messager.alert('提示','上架商品成功!',undefined,function(){
-            					$("#itemList").datagrid("reload");
-            				});
-            			}
-            		});
+                	// $.post("/rest/item/reshelf",params, function(data){
+            		// 	if(data.status == 200){
+            		// 		$.messager.alert('提示','上架商品成功!',undefined,function(){
+            		// 			$("#itemList").datagrid("reload");
+            		// 		});
+                    //         $("#itemList").datagrid("reload");
+            		// 	}
+            		// });
+                    $.ajax({
+                        type: 'POST',
+                        url:"/rest/item/reshelf",
+                        data:params,
+                        success:function(msg){
+                            alert('提示: 上架商品成功!')
+                            $("#itemList").datagrid("reload");
+
+                        },
+                        error(data){
+                            console.log('上架商品失败!')
+                            console.log(data.status)
+                        }
+                    })
         	    }
         	});
         }
