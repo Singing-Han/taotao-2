@@ -87,7 +87,7 @@ public class ItemServiceImpl implements ItemService {
             Item item = itemMapper.selectByPrimaryKey(Long.valueOf(id));
             // 设置状态为下架
             item.setStatus(2); // 1.正常 2. 下架 3.删除
-            item.setUpdated(item.getCreated()); // 更新时间
+            item.setUpdated(new Date()); // 更新时间
 
             // 保存商品状态 和更新时间
             itemMapper.updateByPrimaryKey(item);
@@ -109,7 +109,7 @@ public class ItemServiceImpl implements ItemService {
             Item item = itemMapper.selectByPrimaryKey(Long.valueOf(id));
             // 设置状态为正常
             item.setStatus(1); // 1.正常 2. 下架 3.删除
-            item.setUpdated(item.getCreated()); // 更新时间
+            item.setUpdated(new Date()); // 更新时间
 
             // 保存商品状态 和更新时间
             itemMapper.updateByPrimaryKey(item);
