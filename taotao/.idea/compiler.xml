@@ -9,16 +9,20 @@
         <module name="taotao-portal" />
         <module name="taotao-manager-interface" />
         <module name="itcast-dubbo-consumer" />
+        <module name="taotao-sso-services" />
         <module name="itcast-dubbo-provider" />
         <module name="taotao-manager-service" />
         <module name="taotao-search-web" />
         <module name="taotao-search-service" />
         <module name="taotao-search-interface" />
+        <module name="taotao-item-web" />
         <module name="taotao-manager-pojo" />
         <module name="itcast-dubbo-interface" />
+        <module name="taotao-sso-web" />
         <module name="itcast-solrj" />
         <module name="taotao-manager-web" />
         <module name="itcast-activemq" />
+        <module name="taotao-sso-interface" />
         <module name="taotao-common" />
         <module name="taotao-manager-mapper" />
       </profile>
@@ -30,6 +34,7 @@
       <module name="itcast-dubbo-provider" target="1.8" />
       <module name="itcast-solrj" target="1.8" />
       <module name="taotao-common" target="1.8" />
+      <module name="taotao-item-web" target="1.8" />
       <module name="taotao-manager" target="1.8" />
       <module name="taotao-manager-interface" target="1.8" />
       <module name="taotao-manager-mapper" target="1.8" />
@@ -42,6 +47,11 @@
       <module name="taotao-search-interface" target="1.8" />
       <module name="taotao-search-service" target="1.8" />
       <module name="taotao-search-web" target="1.8" />
+      <module name="taotao-sso" target="1.8" />
+      <module name="taotao-sso-interface" target="1.8" />
+      <module name="taotao-sso-service1" target="1.8" />
+      <module name="taotao-sso-services" target="1.8" />
+      <module name="taotao-sso-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -52,6 +62,7 @@
       <module name="itcast-dubbo-provider" options="-parameters" />
       <module name="itcast-solrj" options="-parameters" />
       <module name="taotao-common" options="-parameters" />
+      <module name="taotao-item-web" options="-parameters" />
       <module name="taotao-manager-interface" options="-parameters" />
       <module name="taotao-manager-mapper" options="-parameters" />
       <module name="taotao-manager-pojo" options="-parameters" />
@@ -62,6 +73,10 @@
       <module name="taotao-search-interface" options="-parameters" />
       <module name="taotao-search-service" options="-parameters" />
       <module name="taotao-search-web" options="-parameters" />
+      <module name="taotao-sso-interface" options="-parameters" />
+      <module name="taotao-sso-service1" options="-parameters" />
+      <module name="taotao-sso-services" options="-parameters" />
+      <module name="taotao-sso-web" options="-parameters" />
     </option>
   </component>
 </project>

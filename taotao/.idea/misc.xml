@@ -10,6 +10,12 @@
         <option value="$PROJECT_DIR$/../taotao-parent/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../taotao-sso/taotao-sso-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../taotao-sso/taotao-sso-service1/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="false">
     <output url="file://$PROJECT_DIR$/out" />

@@ -3,6 +3,8 @@ package cn.edu.sziit.service;
 import cn.edu.sziit.pojo.Item;
 import cn.edu.sziit.pojo.TaoResult;
 
+import java.util.List;
+
 
 public interface ItemService {
 
@@ -23,4 +25,23 @@ public interface ItemService {
      * @param desc 商品描述
      */
     void saveItem(Item item,String desc);
+
+
+    /**
+     * 下架商品
+     */
+    void shelveItem(String [] idArr);
+
+    /**
+     * 上商品
+     */
+    void reshelfItem(String [] idArr);
+
+    /**
+     * 根据商品id查询商品
+     * @param id
+     * @return
+     */
+    Item queryById(Long id);
+
 }

@@ -10,7 +10,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.jms.core.JmsMessagingTemplate;
 import java.util.Date;
 
 @Service
@@ -21,6 +21,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private ItemDescService itemDescService;
+
+    @Autowired
+    private JmsMessagingTemplate jmsMessagingTemplate;
 
     /**
      *
@@ -63,5 +66,63 @@ public class ItemServiceImpl implements ItemService {
         itemDesc.setItemId(item.getId());
         // 保存商品描述
         itemDescService.saveItemDesc(itemDesc);
+
+        //----------------新增好商品之后，发送一个消息通知，告诉搜索系统，要更新索引----------
+
+        //只需要发送商品的id过去即可，
+        //搜索系统得到商品的id之后，---> 根据id去查询mysql 得到商品数据------>构建索引，存到索引库中。
+        jmsMessagingTemplate.convertAndSend("item", item.getId()+"");
+
+    }
+
+    /**
+     * 删除商品
+     * @param idArr
+     */
+    @Override
+    public void shelveItem(String [] idArr) {
+
+        for (String id : idArr) {
+
+            Item item = itemMapper.selectByPrimaryKey(Long.valueOf(id));
+            // 设置状态为下架
+            item.setStatus(2); // 1.正常 2. 下架 3.删除
+            item.setUpdated(item.getCreated()); // 更新时间
+
+            // 保存商品状态 和更新时间
+            itemMapper.updateByPrimaryKey(item);
+
+            jmsMessagingTemplate.convertAndSend("shelveItem", item.getId()+"");
+
+        }
+    }
+
+    /**
+     * 上架商品
+     * @param idArr
+     */
+    @Override
+    public void reshelfItem(String[] idArr) {
+
+        for (String id : idArr) {
+
+            Item item = itemMapper.selectByPrimaryKey(Long.valueOf(id));
+            // 设置状态为正常
+            item.setStatus(1); // 1.正常 2. 下架 3.删除
+            item.setUpdated(item.getCreated()); // 更新时间
+
+            // 保存商品状态 和更新时间
+            itemMapper.updateByPrimaryKey(item);
+
+            jmsMessagingTemplate.convertAndSend("item", item.getId()+"");
+
+        }
+    }
+
+    @Override
+    public Item queryById(Long id) {
+
+        return  itemMapper.selectByPrimaryKey(id);
+
     }
 }

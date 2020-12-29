@@ -40,7 +40,9 @@
     	for(var i in sels){
     		ids.push(sels[i].id);
     	}
+
     	ids = ids.join(",");
+
     	return ids;
     }
     

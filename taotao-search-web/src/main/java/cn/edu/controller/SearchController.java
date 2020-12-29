@@ -19,8 +19,6 @@ public class SearchController {
 
     private int rows = 16;
 
-
-    // http://search.taotao.com/search?q=apple
     @RequestMapping("/search.html")
     public String search(Model model, @RequestParam("q") String query,
                          @RequestParam(value = "page", defaultValue = "1") Integer page){

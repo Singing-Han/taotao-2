@@ -5,7 +5,12 @@ import cn.edu.sziit.pojo.TaoResult;
 import cn.edu.sziit.service.ItemService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 @RestController
@@ -15,19 +20,46 @@ public class ItemController {
     private ItemService itemService;
 
     @RequestMapping("/rest/item")
-    public TaoResult<Item> findByPage(int page,int rows){
+    public TaoResult<Item> findByPage(int page, int rows) {
 
         TaoResult<Item> itemTaoResult = itemService.findByPage(page, rows);
         return itemTaoResult;
     }
 
     @RequestMapping("/rest/addItem")
-    public void addItem(Item item,String desc){
+    public void addItem(Item item, String desc) {
 
-        itemService.saveItem(item,desc);
+        itemService.saveItem(item, desc);
 
         System.out.println("新增商品成功:" + item);
         System.out.println(desc);
+    }
+
+
+    /**下架商品
+     * @param ids
+     */
+    @RequestMapping(value = "/rest/item/instock", method = RequestMethod.POST)
+    public void shelveItem(String ids) {
+
+        String[] idArr = ids.split(",");
+//        System.out.println(idArr);
+        itemService.shelveItem(idArr);
+
+    }
+
+    /**
+     *  上架商品
+     * @param ids
+     */
+    //http://manager.taotao.com/rest/item/reshelf
+    @RequestMapping(value = "/rest/item/reshelf", method = RequestMethod.POST)
+    public void reshelfItem(String ids) {
+
+        String[] idArr = ids.split(",");
+//        System.out.println(idArr);
+        itemService.reshelfItem(idArr);
+
     }
 
 }

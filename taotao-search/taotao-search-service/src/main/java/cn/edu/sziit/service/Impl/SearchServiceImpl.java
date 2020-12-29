@@ -1,8 +1,8 @@
 package cn.edu.sziit.service.Impl;
 
-import cn.edu.sziit.service.SearchService;
 import cn.edu.sziit.pojo.Item;
 import cn.edu.sziit.pojo.TaoResult;
+import cn.edu.sziit.service.SearchService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.dubbo.config.annotation.Service;
 import org.apache.solr.client.solrj.SolrClient;
@@ -11,11 +11,9 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 @Service
 public class SearchServiceImpl implements SearchService {
 
@@ -24,7 +22,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public TaoResult<Item> search(String query, Integer page, Integer rows) {
-
+        //这里要查询的是索引库~！！！
         // 封装查询对象
         SolrQuery solrQuery = new SolrQuery();
 
@@ -34,6 +32,7 @@ public class SearchServiceImpl implements SearchService {
         } else {
             solrQuery.setQuery("item_status:1");
         }
+
         // 设置分页
         solrQuery.setStart((page - 1) * rows);
         solrQuery.setRows(rows);
@@ -49,7 +48,8 @@ public class SearchServiceImpl implements SearchService {
 
         try {
             // 执行查询
-            QueryResponse response = solrClient.query(solrQuery);
+            QueryResponse response = this.solrClient.query(solrQuery);
+            //得到查询索引库的结果
             SolrDocumentList results = response.getResults();
 
             // 获取高亮数据
@@ -72,7 +72,6 @@ public class SearchServiceImpl implements SearchService {
                 if (hlist != null && hlist.size() > 0) {
                     item.setTitle(hlist.get(0));
                 } else {
-
                     item.setTitle(solrDocument.get("item_title").toString());
                 }
 
@@ -105,7 +104,5 @@ public class SearchServiceImpl implements SearchService {
 
         // 如果查询有异常，就返回一个空的结果
         return taoResult;
-
-
     }
 }

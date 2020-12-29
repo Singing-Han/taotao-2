@@ -20,6 +20,9 @@
         <module>../taotao-search</module>
         <module>../taotao-search-web</module>
         <module>../itcast-activemq</module>
+        <module>../taotao-item-web</module>
+        <module>../taotao-sso</module>
+        <module>../taotao-sso-web</module>
     </modules>
 
     <parent>
