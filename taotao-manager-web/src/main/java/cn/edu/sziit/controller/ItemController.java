@@ -1,6 +1,7 @@
 package cn.edu.sziit.controller;
 
 import cn.edu.sziit.pojo.Item;
+import cn.edu.sziit.pojo.RespStatus;
 import cn.edu.sziit.pojo.TaoResult;
 import cn.edu.sziit.service.ItemService;
 import org.apache.dubbo.config.annotation.Reference;
@@ -40,13 +41,20 @@ public class ItemController {
      * @param ids
      */
     @RequestMapping(value = "/rest/item/instock", method = RequestMethod.POST)
-    public void shelveItem(String ids) {
+    public int shelveItem(String ids) {
 
         String[] idArr = ids.split(",");
-//        System.out.println(idArr);
-        itemService.shelveItem(idArr);
+
+        RespStatus respStatus = new RespStatus();
+
+        respStatus.setStatus(2);
+
+        int status = itemService.updateItemStatus(idArr, respStatus.getStatus());
+
+        return status;
 
     }
+
 
     /**
      *  上架商品
@@ -54,11 +62,17 @@ public class ItemController {
      */
     //http://manager.taotao.com/rest/item/reshelf
     @RequestMapping(value = "/rest/item/reshelf", method = RequestMethod.POST)
-    public void reshelfItem(String ids) {
+    public int reshelfItem(String ids) {
 
         String[] idArr = ids.split(",");
-//        System.out.println(idArr);
-        itemService.reshelfItem(idArr);
+
+        RespStatus respStatus = new RespStatus();
+
+        respStatus.setStatus(1);
+
+        int status = itemService.updateItemStatus(idArr, respStatus.getStatus());
+
+        return status;
 
     }
 

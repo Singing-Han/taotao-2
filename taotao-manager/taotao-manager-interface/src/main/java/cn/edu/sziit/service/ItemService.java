@@ -28,14 +28,14 @@ public interface ItemService {
 
 
     /**
-     * 下架商品
+     * 修改商品状态
      */
-    void shelveItem(String [] idArr);
+    int updateItemStatus(String [] idArr,int status);
 
-    /**
-     * 上商品
-     */
-    void reshelfItem(String [] idArr);
+//    /**
+//     * 上商品
+//     */
+//    int reshelfItem(String [] idArr,int status);
 
     /**
      * 根据商品id查询商品

@@ -11,6 +11,7 @@ import com.github.pagehelper.PageHelper;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
+
 import java.util.Date;
 
 @Service
@@ -26,7 +27,6 @@ public class ItemServiceImpl implements ItemService {
     private JmsMessagingTemplate jmsMessagingTemplate;
 
     /**
-     *
      * @param page 查询第几页
      * @param rows 每页显示多少条
      * @return
@@ -35,19 +35,19 @@ public class ItemServiceImpl implements ItemService {
     public TaoResult<Item> findByPage(Integer page, Integer rows) {
 
         // 设置分页数据 只是设置查询第几页 , 每页查询多少条数据
-        PageHelper.startPage(page,rows);
+        PageHelper.startPage(page, rows);
 
         // 2.查询
-        Page<Item> pageData = (Page<Item>)itemMapper.selectByExample(null);
+        Page<Item> pageData = (Page<Item>) itemMapper.selectByExample(null);
 
         // 3.创建TaoResult对象
-        TaoResult <Item> result = new TaoResult<> (pageData.getTotal(),pageData.getResult());
+        TaoResult<Item> result = new TaoResult<>(pageData.getTotal(), pageData.getResult());
 
         return result;
     }
 
     @Override
-    public void saveItem(Item item,String desc) {
+    public void saveItem(Item item, String desc) {
 
         // 由于页面没有提交过来 status | created | updated
         item.setStatus(1); // 1.正常 2. 下架 3.删除
@@ -71,58 +71,66 @@ public class ItemServiceImpl implements ItemService {
 
         //只需要发送商品的id过去即可，
         //搜索系统得到商品的id之后，---> 根据id去查询mysql 得到商品数据------>构建索引，存到索引库中。
-        jmsMessagingTemplate.convertAndSend("item", item.getId()+"");
+        jmsMessagingTemplate.convertAndSend("item", item.getId() + "");
 
     }
 
-    /**
-     * 下架商品
-     * @param idArr
-     */
     @Override
-    public void shelveItem(String [] idArr) {
+    public int updateItemStatus(String[] idArr, int status) {
 
-        for (String id : idArr) {
+        int nums = 0;
 
-            Item item = itemMapper.selectByPrimaryKey(Long.valueOf(id));
-            // 设置状态为下架
-            item.setStatus(2); // 1.正常 2. 下架 3.删除
-            item.setUpdated(new Date()); // 更新时间
+        if (status == 2 || status == 3) {
+            for (String id : idArr) {
+                Item item = itemMapper.selectByPrimaryKey(Long.valueOf(id));
+                // 设置状态为下架 或 删除
+                item.setStatus(status); // 1.正常 2. 下架 3.删除
+                item.setUpdated(new Date()); // 更新时间
+                // 保存商品状态 和更新时间
+                if (status == 3) {
+                    int num = itemMapper.delete(item);
+                    if (num > 0) {
+                        jmsMessagingTemplate.convertAndSend("shelveItem", item.getId() + "");
+                        nums += num;
+                    }
+                } else {
+                    int num = itemMapper.updateByPrimaryKey(item);
+                    if (num > 0) {
+                        jmsMessagingTemplate.convertAndSend("shelveItem", item.getId() + "");
+                        nums += num;
+                    }
+                }
 
-            // 保存商品状态 和更新时间
-            itemMapper.updateByPrimaryKey(item);
+                if (nums == idArr.length) {
+                    return 200;
+                }
+            }
 
-            jmsMessagingTemplate.convertAndSend("shelveItem", item.getId()+"");
-
+        } else if (status == 1) {
+            for (String id : idArr) {
+                Item item = itemMapper.selectByPrimaryKey(Long.valueOf(id));
+                // 设置状态为上架
+                item.setStatus(status); // 1.正常 2. 下架 3.删除
+                item.setUpdated(new Date()); // 更新时间
+                // 保存商品状态 和更新时间
+                int num = itemMapper.updateByPrimaryKey(item);
+                if (num > 0) {
+                    jmsMessagingTemplate.convertAndSend("item", item.getId() + "");
+                    nums += num;
+                }
+                if (nums == idArr.length) {
+                    return 200;
+                }
+            }
         }
+        return 404;
     }
 
-    /**
-     * 上架商品
-     * @param idArr
-     */
-    @Override
-    public void reshelfItem(String[] idArr) {
-
-        for (String id : idArr) {
-
-            Item item = itemMapper.selectByPrimaryKey(Long.valueOf(id));
-            // 设置状态为正常
-            item.setStatus(1); // 1.正常 2. 下架 3.删除
-            item.setUpdated(new Date()); // 更新时间
-
-            // 保存商品状态 和更新时间
-            itemMapper.updateByPrimaryKey(item);
-
-            jmsMessagingTemplate.convertAndSend("item", item.getId()+"");
-
-        }
-    }
 
     @Override
     public Item queryById(Long id) {
 
-        return  itemMapper.selectByPrimaryKey(id);
+        return itemMapper.selectByPrimaryKey(id);
 
     }
 }

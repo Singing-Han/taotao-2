@@ -118,8 +118,16 @@
                         url:"/rest/item/instock",
                         data:params,
                         success:function(msg){
-                            alert('提示: 下架商品成功!')
-                            $("#itemList").datagrid("reload");
+                            if (msg === 200) {
+                                console.log(msg)
+                                alert('提示: 下架商品成功!')
+                                $("#itemList").datagrid("reload");
+                            }else{
+                                alert('提示: 下架商品失败!')
+                            }
+                            // console.log(msg)
+                            // alert('提示: 下架商品成功!')
+                            // $("#itemList").datagrid("reload");
                         },
                         error(data){
                             console.log('下架商品失败!')
@@ -128,6 +136,8 @@
                     })
                 	// $.post({
                     //     url:"/rest/item/instock",params, function(data){
+                    //         console.log(data)
+                    //         console.log(data.status)
                     //         if(data.status == 200){
                     //             $.messager.alert('提示','下架商品成功!',undefined,function(){
                     //                 $("#itemList").datagrid("reload");
@@ -152,6 +162,8 @@
         	    if (r){
         	    	var params = {"ids":ids};
                 	// $.post("/rest/item/reshelf",params, function(data){
+                    //     console.log(data)
+                    //     console.log(data.status)
             		// 	if(data.status == 200){
             		// 		$.messager.alert('提示','上架商品成功!',undefined,function(){
             		// 			$("#itemList").datagrid("reload");
@@ -164,9 +176,12 @@
                         url:"/rest/item/reshelf",
                         data:params,
                         success:function(msg){
-                            alert('提示: 上架商品成功!')
-                            $("#itemList").datagrid("reload");
-
+                            if (msg === 200) {
+                                alert('提示: 上架商品成功!')
+                                $("#itemList").datagrid("reload");
+                            }else{
+                                alert('提示: 上架商品失败!')
+                            }
                         },
                         error(data){
                             console.log('上架商品失败!')
